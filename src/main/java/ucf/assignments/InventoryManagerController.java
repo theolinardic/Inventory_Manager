@@ -295,13 +295,41 @@ public class InventoryManagerController {
     public static void loadFile(String fileName){
 
         if(fileName.contains(".html")){
+            try{
+                File loadedFile = new File(fileName);
+                Scanner fileScanner = new Scanner(loadedFile);
 
+                AllItemNames.clear();
+                AllValues.clear();
+                AllSerialNumbers.clear();
+
+                fileScanner.nextLine();
+                fileScanner.nextLine();
+                fileScanner.nextLine();
+                fileScanner.nextLine();
+                fileScanner.nextLine();
+                fileScanner.nextLine();
+                fileScanner.nextLine();
+
+                while(fileScanner.hasNextLine()){
+
+                    String nextLine = fileScanner.nextLine();
+                    String[] partsOfLine = nextLine.split("\t", 3);
+                    AllItemNames.add(partsOfLine[0]);
+                    AllValues.add(Double.parseDouble(partsOfLine[1]));
+                    AllSerialNumbers.add(partsOfLine[2]);
+
+                }
+
+            }
+            catch(Exception e){
+
+            }
         }
         else if(fileName.contains(".json")){
 
         }
         else if(fileName.contains(".txt")){
-            System.out.print("test");
             try{
                 File loadedFile = new File(fileName);
                 Scanner fileScanner = new Scanner(loadedFile);
