@@ -1,0 +1,14 @@
+ucf/assignments/InventoryManager.java
+ ucf.assignments.InventoryManager
+ucf/assignments/ItemData.java
+ ucf.assignments.ItemData
+ucf/assignments/ErrorExistingSerialWindowController.java
+ ucf.assignments.ErrorExistingSerialWindowController
+ucf/assignments/LoadFileWindowController.java
+ ucf.assignments.LoadFileWindowController
+ucf/assignments/InventoryManagerController.java
+ ucf.assignments.InventoryManagerController
+ucf/assignments/EditItemValuesController.java
+ ucf.assignments.EditItemValuesController
+ucf/assignments/SaveFileWindowController.java
+ ucf.assignments.SaveFileWindowController
