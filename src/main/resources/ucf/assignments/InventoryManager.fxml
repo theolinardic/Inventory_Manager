@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="388.0" prefWidth="562.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryManagerController">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="568.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Search For Item Name" />
+                  <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Search For Item Serial Number" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveButtonClicked" text="Save File" />
+                  <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Load File" />
+                  <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Edit Current Item" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteItemButtonClicked" text="Delete Current Item" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Sort">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Sort By Value (High-To-Low)" />
+                  <MenuItem mnemonicParsing="false" text="Sort By Value (Low-To-High)" />
+                  <MenuItem mnemonicParsing="false" text="Sort By Name" />
+                  <MenuItem mnemonicParsing="false" text="Sort By Serial Number" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Text layoutX="127.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory" textAlignment="CENTER" wrappingWidth="307.13671875">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Text>
+      <Line endX="551.0" endY="65.0" startX="17.0" startY="65.0" />
+      <HBox layoutX="17.0" layoutY="74.0" prefHeight="260.0" prefWidth="535.0">
+         <children>
+            <TableView fx:id="itemListDisplay" prefHeight="245.0" prefWidth="535.0">
+              <columns>
+                <TableColumn fx:id="itemNameColumn" prefWidth="192.0" text="Item Name" />
+                <TableColumn fx:id="itemValueColumn" prefWidth="158.0" text="Item Value" />
+                  <TableColumn fx:id="itemSerialColumn" prefWidth="183.0" text="Item Serial Number" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <Button layoutX="494.0" layoutY="349.0" mnemonicParsing="false" onAction="#addItemButtonClicked" prefHeight="25.0" prefWidth="58.0" text="Add Item">
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <TextField fx:id="newItemNameField" layoutX="17.0" layoutY="349.0" prefHeight="25.0" prefWidth="157.0" promptText="New Item Name" />
+      <TextField fx:id="newItemValueField" layoutX="181.0" layoutY="349.0" prefHeight="25.0" prefWidth="157.0" promptText="New Item Value (XX.XX)" />
+      <TextField fx:id="newItemSerialField" layoutX="345.0" layoutY="349.0" prefHeight="25.0" prefWidth="142.0" promptText="New Item Serial Number">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
