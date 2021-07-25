@@ -20,8 +20,6 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Search For Item Name" />
-                  <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Search For Item Serial Number" />
                   <MenuItem mnemonicParsing="false" onAction="#saveButtonClicked" text="Save File" />
                   <MenuItem mnemonicParsing="false" onAction="#loadButtonClicked" text="Load File" />
                   <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />

@@ -425,10 +425,22 @@ public class InventoryManagerController {
                 while(fileScanner.hasNextLine()){
 
                     String nextLine = fileScanner.nextLine();
-                    String[] partsOfLine = nextLine.split("\t", 3);
-                    AllItemNames.add(partsOfLine[0]);
-                    AllValues.add(Double.parseDouble(partsOfLine[1]));
-                    AllSerialNumbers.add(partsOfLine[2]);
+                    nextLine = nextLine.substring(4,nextLine.length()-5);
+                    System.out.print(nextLine +"\n");
+                    AllItemNames.add(nextLine);
+
+                    String nextLine2 = fileScanner.nextLine();
+                    nextLine2 = nextLine2.substring(4,nextLine2.length()-5);
+                    System.out.print(nextLine2 + "\n");
+                    AllValues.add(Double.parseDouble(nextLine2));
+
+                    String nextLine3 = fileScanner.nextLine();
+                    nextLine3 = nextLine3.substring(4,nextLine3.length()-5);
+                    System.out.print(nextLine3 + "\n");
+                    AllSerialNumbers.add(nextLine3);
+
+                    fileScanner.nextLine();
+                    fileScanner.nextLine();
 
                 }
 
@@ -438,7 +450,46 @@ public class InventoryManagerController {
             }
         }
         else if(fileName.contains(".json")){
+            try{
+                File loadedFile = new File(fileName);
+                Scanner fileScanner = new Scanner(loadedFile);
 
+                AllItemNames.clear();
+                AllValues.clear();
+                AllSerialNumbers.clear();
+
+                fileScanner.nextLine();
+                fileScanner.nextLine();
+
+                while(fileScanner.hasNextLine()){
+                    fileScanner.nextLine();
+                    String nextLine = fileScanner.nextLine();
+                    nextLine = nextLine.substring(12,nextLine.length()-1);
+                    System.out.print(nextLine +"\n");
+                    AllItemNames.add(nextLine);
+
+                    String nextLine2 = fileScanner.nextLine();
+                    nextLine2 = nextLine2.substring(13,nextLine2.length()-1);
+                    System.out.print(nextLine2 + "\n");
+                    AllValues.add(Double.parseDouble(nextLine2));
+
+                    String nextLine3 = fileScanner.nextLine();
+                    nextLine3 = nextLine3.substring(20,nextLine3.length()-1);
+                    System.out.print(nextLine3 + "\n");
+                    AllSerialNumbers.add(nextLine3);
+
+                    String commaCheck = fileScanner.nextLine();
+                    if(commaCheck.contains(",") == false){
+                        break;
+                    }
+                    fileScanner.nextLine();
+
+                }
+
+            }
+            catch(Exception e){
+
+            }
         }
         else if(fileName.contains(".txt")){
             try{
