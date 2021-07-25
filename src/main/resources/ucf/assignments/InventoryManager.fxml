@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -13,14 +14,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="388.0" prefWidth="562.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryManagerController">
+<AnchorPane prefHeight="420.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryManagerController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="568.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Search For Item Name" />
-                  <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Search For Item Serial Number" />
                   <MenuItem mnemonicParsing="false" onAction="#saveButtonClicked" text="Save File" />
                   <MenuItem mnemonicParsing="false" onAction="#loadButtonClicked" text="Load File" />
                   <MenuItem mnemonicParsing="false" onAction="#closeButtonClicked" text="Close" />
@@ -28,16 +27,16 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Edit Current Item" />
+              <MenuItem mnemonicParsing="false" onAction="#editItemButtonClicked" text="Edit Current Item" />
                   <MenuItem mnemonicParsing="false" onAction="#deleteItemButtonClicked" text="Delete Current Item" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Sort">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#sortHighToLowButtonClicked" text="Sort By Value (High-To-Low)" />
-                  <MenuItem mnemonicParsing="false" text="Sort By Value (Low-To-High)" />
-                  <MenuItem mnemonicParsing="false" text="Sort By Name" />
-                  <MenuItem mnemonicParsing="false" text="Sort By Serial Number" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortLowToHighButtonClicked" text="Sort By Value (Low-To-High)" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortByNameButtonClicked" text="Sort By Name" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortBySerialButtonClicked" text="Sort By Serial Number" />
             </items>
           </Menu>
         </menus>
@@ -70,5 +69,8 @@
             <Font size="11.0" />
          </font>
       </TextField>
+      <ChoiceBox fx:id="searchInputType" layoutX="285.0" layoutY="386.0" prefWidth="150.0" />
+      <Button layoutX="442.0" layoutY="386.0" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="25.0" prefWidth="110.0" text="Search" />
+      <TextField fx:id="searchInputField" layoutX="17.0" layoutY="386.0" prefHeight="25.0" prefWidth="261.0" promptText="Search Box" />
    </children>
 </AnchorPane>

@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 import javafx.scene.control.TableColumn;
@@ -23,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class InventoryManagerController {
@@ -38,6 +40,12 @@ public class InventoryManagerController {
 
     @FXML
     private TextField newItemSerialField;
+
+    @FXML
+    private TextField searchInputField;
+
+    @FXML
+    private ChoiceBox searchInputType;
 
     @FXML
     private TableView<ItemData> itemListDisplay;
@@ -186,8 +194,25 @@ public class InventoryManagerController {
     }
 
     @FXML
-    public void sortHighToLowButtonClicked(ActionEvent actionEvent){
+    public void sortByNameButtonClicked(ActionEvent actionEvent){
 
+        ArrayList<String> NewListNames = new ArrayList<String>(AllItemNames);
+        ArrayList<String> NewListSerial = new ArrayList<String>();
+        ArrayList<Double> NewListValues = new ArrayList<Double>();
+
+        Collections.sort(NewListNames);
+
+        for(int i = 0; i < NewListNames.size(); i++){
+            int currentPosition = AllItemNames.indexOf(NewListNames.get(i));
+            NewListSerial.add(AllSerialNumbers.get(currentPosition));
+            NewListValues.add(AllValues.get(currentPosition));
+        }
+
+        AllItemNames = NewListNames;
+        AllSerialNumbers = NewListSerial;
+        AllValues = NewListValues;
+
+        itemListDisplay.getItems().clear();
 
         for (int i = 0; i < AllValues.size(); i++){
             ItemData newItem = new ItemData(AllItemNames.get(i), AllValues.get(i), AllSerialNumbers.get(i));
@@ -195,7 +220,93 @@ public class InventoryManagerController {
         }
 
         itemListDisplay.refresh();
+    }
 
+    @FXML
+    public void sortBySerialButtonClicked(ActionEvent actionEvent){
+
+        ArrayList<String> NewListNames = new ArrayList<String>();
+        ArrayList<String> NewListSerial = new ArrayList<String>(AllSerialNumbers);
+        ArrayList<Double> NewListValues = new ArrayList<Double>();
+
+        Collections.sort(NewListSerial);
+
+        for(int i = 0; i < NewListSerial.size(); i++){
+            int currentPosition = AllSerialNumbers.indexOf(NewListSerial.get(i));
+            NewListNames.add(AllItemNames.get(currentPosition));
+            NewListValues.add(AllValues.get(currentPosition));
+        }
+
+        AllItemNames = NewListNames;
+        AllSerialNumbers = NewListSerial;
+        AllValues = NewListValues;
+
+        itemListDisplay.getItems().clear();
+
+        for (int i = 0; i < AllValues.size(); i++){
+            ItemData newItem = new ItemData(AllItemNames.get(i), AllValues.get(i), AllSerialNumbers.get(i));
+            itemListDisplay.getItems().add(newItem);
+        }
+
+        itemListDisplay.refresh();
+    }
+
+    @FXML
+    public void sortLowToHighButtonClicked(ActionEvent actionEvent){
+
+        ArrayList<String> NewListNames = new ArrayList<String>();
+        ArrayList<String> NewListSerial = new ArrayList<String>();
+        ArrayList<Double> NewListValues = new ArrayList<Double>(AllValues);
+
+        Collections.sort(NewListValues);
+
+        for(int i = 0; i < NewListValues.size(); i++){
+            int currentPosition = AllValues.indexOf(NewListValues.get(i));
+            NewListSerial.add(AllSerialNumbers.get(currentPosition));
+            NewListNames.add(AllItemNames.get(currentPosition));
+        }
+
+        AllItemNames = NewListNames;
+        AllSerialNumbers = NewListSerial;
+        AllValues = NewListValues;
+
+        itemListDisplay.getItems().clear();
+
+        for (int i = 0; i < AllValues.size(); i++){
+            ItemData newItem = new ItemData(AllItemNames.get(i), AllValues.get(i), AllSerialNumbers.get(i));
+            itemListDisplay.getItems().add(newItem);
+        }
+
+        itemListDisplay.refresh();
+    }
+
+    @FXML
+    public void sortHighToLowButtonClicked(ActionEvent actionEvent){
+
+        ArrayList<String> NewListNames = new ArrayList<String>();
+        ArrayList<String> NewListSerial = new ArrayList<String>();
+        ArrayList<Double> NewListValues = new ArrayList<Double>(AllValues);
+
+        Collections.sort(NewListValues, Collections.reverseOrder());
+
+        for(int i = 0; i < NewListValues.size(); i++){
+            int currentPosition = AllValues.indexOf(NewListValues.get(i));
+            NewListSerial.add(AllSerialNumbers.get(currentPosition));
+            NewListNames.add(AllItemNames.get(currentPosition));
+        }
+
+        AllItemNames = NewListNames;
+        AllSerialNumbers = NewListSerial;
+        AllValues = NewListValues;
+
+        itemListDisplay.getItems().clear();
+
+        for (int i = 0; i < AllValues.size(); i++){
+            ItemData newItem = new ItemData(AllItemNames.get(i), AllValues.get(i), AllSerialNumbers.get(i));
+            itemListDisplay.getItems().add(newItem);
+        }
+
+        itemListDisplay.refresh();
     }
 
 
@@ -356,6 +467,36 @@ public class InventoryManagerController {
         }
     }
 
+    @FXML
+    public void searchButtonClicked(ActionEvent actionEvent){
+
+        if(searchInputType.getSelectionModel().getSelectedItem().toString().equals("Search For Name")){
+            for(int i = 0; i < AllItemNames.size(); i++){
+                if(AllItemNames.get(i).equals(searchInputField.getText())){
+                    itemListDisplay.getSelectionModel().select(i);
+                    break;
+                }
+            }
+        }
+        else if(searchInputType.getSelectionModel().getSelectedItem().toString().equals("Search For Value")){
+            for(int i = 0; i < AllValues.size(); i++){
+                if(AllValues.get(i) == Double.parseDouble(searchInputField.getText())){
+                    itemListDisplay.getSelectionModel().select(i);
+                    break;
+                }
+            }
+        }
+        else if(searchInputType.getSelectionModel().getSelectedItem().toString().equals("Search For Serial")){
+            for(int i = 0; i < AllSerialNumbers.size(); i++){
+                if(AllSerialNumbers.get(i).equals(searchInputField.getText())){
+                    itemListDisplay.getSelectionModel().select(i);
+                    break;
+                }
+            }
+        }
+
+    }
+
 
 
     @FXML
@@ -363,6 +504,9 @@ public class InventoryManagerController {
         itemNameColumn.setCellValueFactory(new PropertyValueFactory<ItemData, String>("itemName"));
         itemValueColumn.setCellValueFactory(new PropertyValueFactory<ItemData, Double>("itemValue"));
         itemSerialColumn.setCellValueFactory(new PropertyValueFactory<ItemData, String>("itemSerial"));
+
+        searchInputType.getItems().addAll("Search For Name", "Search For Value", "Search For Serial");
+        searchInputType.getSelectionModel().select("Search For Serial");
     }
 
 }
