@@ -1,8 +1,103 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class InventoryManager(){
+class InventoryManager{
 
 }
+
+class EditItemValuesController{
+    newItemNameField: TextField
+    newItemValueField: TextField
+    newItemSerialField: TextField
+
+    closeButtonClicked()
+    saveChangesButtonClicked()
+
+}
+
+class ErrorExistingSerialWindowController{
+    closeButtonClicked()
+}
+
+class InventoryManagerController{
+    AllSerialNumbers: static ArrayList<String>
+    AllValues: static ArrayList<Double>
+    AllNames: static ArrayList<String>
+
+    newItemNameField: TextField
+    newItemValueField: TextField
+    newItemSerialField: TextField
+    searchInputField: TextField
+    searchInputType: ChoiceBox
+    itemListDisplay: TableView
+    itemNameColumn: TableColumn
+    itemValueColumn: TableColumn
+    itemSerialColumn: TableColumn
+
+    currentlySelectedName: static String
+    currentlySelectedSerial: static String
+    currentlySelectedValue: static double
+
+    InventoryManagerController() //Constructor
+
+    ArrayList<String> GetAllSerialNumbers()
+    SetAllSerialNumbers(ArrayList<String>)
+    closeButtonClicked()
+    addItemButtonClicked()
+    editItemButtonClicked()
+    deleteItemButtonClicked()
+    saveButtonClicked()
+    loadButtonClicked()
+    sortByNameButtonClicked()
+    sortBySerialButtonClicked()
+    sortLowToHighButtonClicked()
+    sortHighToLowButtonClicked()
+    editItem()
+    saveFile(String saveLocation)
+    loadFile(String saveLocation)
+    searchButtonClicked()
+
+    initialize()
+
+}
+
+class ItemData{
+    itemName: SimpleStringProperty
+    itemSerial: SimpleStringProperty
+    itemValue: Double
+
+    ItemData(String name, String Serial, double value) //Constructor
+    string getItemName()
+    setItemName(newName)
+    string getItemSerial()
+    setItemSerial(newName)
+    double getItemValue()
+    setItemValue(newValue)
+}
+
+class LoadFileWindowController{
+    fileLocationInput: TextField
+
+    loadButtonClicked()
+}
+
+class SaveFileWindowController{
+    saveOptionBox: ChoiceBox
+    fileNameInput: TextField
+    saveLocationInput: TextField
+
+    saveButtonClicked()
+    initialize()
+}
+
+org.javafx.Application <|-- InventoryManager
+InventoryManagerController -- InventoryManager
+ItemData -- InventoryManagerController
+ErrorExistingSerialWindowController -- InventoryManagerController
+LoadFileWindowController -- InventoryManagerController
+SaveFileWindowController -- InventoryManagerController
+EditItemValuesController -- InventoryManagerController
+
+
 
 @enduml
