@@ -58,4 +58,45 @@ To Sort The Inventory By Name, Value, Or Serial Number:
 
 To Search For An Item By Name, Value, Or Serial Number:
 
-    Step 1:
+    Step 1: In the seach box on the bottom of the application window, type in
+    the input for what you would like to search (name, value, serial number).
+
+    Step 2: Use the choice box to the right of the search box to pick what you are
+    searching for (name, value, serial number).
+
+    Step 3: Click the search button and if there is a match for your search it will
+    be highlighted.
+    
+    Note: The result will be highlighted but you may need to scroll up or down
+    to find the highlighted result.
+
+To Save Your Inventory To A File:
+    
+    Step 1: Click "File" on the menu bar on the top left of the application window.
+
+    Step 2: On the drop-down window, click "save file."
+
+    Step 3: In the first input field, type in the exact location where you would like
+    to save your inventory. ex: C:\Users\Theo\Desktop
+    
+    Step 4: In the second inpout field, type in what you would like the file to
+    be named. ex: InventoryBackup2021
+    
+    Step 5: Use the choice box to pick the format that you would like the inventory
+    to be saved in (HTML, JSON, or TSV).
+
+    Step 6: Click save and the file will be generated.
+
+To Load Your Inventory From A Previously Saved File:
+
+    Step 1: Click "File" on the menu bar on the top left of the application window.
+
+    Step 2: On the drop-down window, click "load file."
+
+    Step 3: In the input field, type in the exact location and file name where your saved
+    inventory file is. ex: C:\Users\Theo\Desktop\InventoryBackup2021.html
+
+    Step 4: Click "Load."
+
+    Step 5: To see the inventory on the list, choose one of the sorting options
+    (see previous instructions) to see the changes reflected on the inventory list.
