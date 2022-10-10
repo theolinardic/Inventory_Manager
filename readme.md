@@ -1,3 +1,5 @@
+Note: This Project was completed for a class at the University of Central Florida.
+
 This Application can be used to keep track of various inventory items. It will manage
 item names, values, and serial numbers. No two items can have the same serial number.
 
